@@ -548,6 +548,39 @@ body.is-locked [data-f="official_receipt_num"]{border-bottom-color:var(--sky)!im
 </head>
 <body>
 
+<!-- ===== ACCESS GATE (front-end password) ===== -->
+<style>
+  #gate{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;
+        background:#0b1220;background:linear-gradient(160deg,#0b1220,#0f1830);}
+  #gate .gate-card{width:min(360px,90vw);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.10);
+        border-radius:18px;padding:34px 30px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.45);
+        font-family:inherit;direction:rtl;}
+  #gate .gate-logo{font-size:1.9rem;font-weight:800;letter-spacing:.5px;
+        background:linear-gradient(90deg,#3aa0ff,#7ad0c4);-webkit-background-clip:text;background-clip:text;
+        -webkit-text-fill-color:transparent;margin-bottom:4px;}
+  #gate .gate-sub{font-size:.78rem;color:#9fb3c8;margin-bottom:24px;}
+  #gate input{width:100%;box-sizing:border-box;padding:13px 14px;font-size:1rem;text-align:center;
+        border-radius:10px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);
+        color:#eaf2fb;outline:none;letter-spacing:2px;}
+  #gate input:focus{border-color:#3aa0ff;}
+  #gate button{width:100%;margin-top:14px;padding:13px;font-size:1rem;font-weight:700;cursor:pointer;
+        border:none;border-radius:10px;color:#fff;background:linear-gradient(90deg,#2b86e0,#3aa0ff);}
+  #gate button:active{transform:translateY(1px);}
+  #gate .gate-err{min-height:18px;margin-top:12px;font-size:.8rem;color:#ff8a8a;}
+  #gate .gate-foot{margin-top:18px;font-size:.66rem;color:#64778c;line-height:1.5;}
+</style>
+<div id="gate">
+  <div class="gate-card">
+    <div class="gate-logo">Breeza</div>
+    <div class="gate-sub">מערכת קבלות פנימית · גישה מוגבלת</div>
+    <input id="gate-pass" type="password" inputmode="text" autocomplete="off"
+           placeholder="הזן סיסמה" aria-label="password">
+    <button id="gate-btn">כניסה</button>
+    <div class="gate-err" id="gate-err"></div>
+    <div class="gate-foot">לשימוש פנימי בלבד. אינה הקבלה הרשמית — קבלות רשמיות מונפקות ב‑Sumit.</div>
+  </div>
+</div>
+
 <div id="toast">נשמר ✓</div>
 
 <!-- NUMBER MODAL -->
@@ -1228,7 +1261,7 @@ body.is-locked [data-f="official_receipt_num"]{border-bottom-color:var(--sky)!im
    SUPABASE CONFIG  ·  paste your two values between the quotes
    ============================================================ */
 const SUPABASE_URL      = "https://dsbjrquamioilbnnbrjq.supabase.co";  // ← Project URL
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRzYmpycXVhbWlvaWxibm5icmpxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE1MjQxMDIsImV4cCI6MjA5NzEwMDEwMn0.x70WZdrOk4RMSjLdMu6xZU2YN3FVvLQlkRf6Lac-8YY";                  // ← anon public key
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRzYmpycXVhbWlvaWxibm5icmpxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE1MjQxMDIsImV4cCI6MjA5NzEwMDEwMn0.x70WZdrOk4RMSjLdMu6xZU2YN3FVvLQlkRf6Lac-8YY";  // ← anon public key
 /* ============================================================ */
 
 const HEB = {
@@ -1597,13 +1630,56 @@ async function boot(){
   setSync('ok'); subscribeRealtime();
 }
 
-document.addEventListener('DOMContentLoaded', ()=>{
+/* ===== ACCESS GATE =====
+   Front-end password. Stops casual access to the URL.
+   Stored as a SHA-256 hash so the password is NOT readable in page source.
+   To change the password: send me the new word, I rebuild GATE_HASH.            */
+const GATE_HASH = "8aa8ef89449e3a6733460ec9c7e0bf789c507ccccbe4c7d2d60cc9c81da06f1d"; // default: Breeza2026
+const GATE_KEY  = "breeza_gate_ok_v1";
+
+async function sha256Hex(str){
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+function unlockApp(){
+  const g = document.getElementById('gate'); if(g) g.remove();
+  startApp();
+}
+async function tryGate(){
+  const inp = document.getElementById('gate-pass');
+  const err = document.getElementById('gate-err');
+  const val = (inp.value||'').trim();
+  if(!val){ inp.focus(); return; }
+  const h = await sha256Hex(val);
+  if(h === GATE_HASH){
+    try{ localStorage.setItem(GATE_KEY, '1'); }catch(e){}
+    unlockApp();
+  } else {
+    err.textContent = "\u05e1\u05d9\u05e1\u05de\u05d4 \u05e9\u05d2\u05d5\u05d9\u05d4"; // "wrong password"
+    inp.value=''; inp.focus();
+  }
+}
+
+/* Boots the real app. Only called after the gate is passed. */
+function startApp(){
   initTheme();
   initSig('cont'); initSig('pm');
   document.querySelectorAll('input,select,textarea').forEach(el=>{
     el.addEventListener('input', scheduleSave); el.addEventListener('change', scheduleSave);
   });
   boot();
+}
+
+document.addEventListener('DOMContentLoaded', ()=>{
+  let remembered = false;
+  try{ remembered = localStorage.getItem(GATE_KEY) === '1'; }catch(e){}
+  if(remembered){ unlockApp(); return; }
+
+  const btn = document.getElementById('gate-btn');
+  const inp = document.getElementById('gate-pass');
+  if(btn) btn.addEventListener('click', tryGate);
+  if(inp) inp.addEventListener('keydown', e=>{ if(e.key==='Enter') tryGate(); });
+  if(inp) inp.focus();
 });
 
 </script>
