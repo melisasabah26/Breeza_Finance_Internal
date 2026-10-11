@@ -1,6 +1,6 @@
 # ENKËY landing page: design plan
 
-Status: **Step 1. Waiting for a hero direction choice before the full build.**
+Status: **Design approved (Limestone day / Charcoal night). Next: the full build, pending a final "go".**
 Prototypes are in `design/prototypes/hero-a.html` and `hero-b.html`. Screenshots are in `design/screens/`.
 
 ---
@@ -64,54 +64,52 @@ The one action throughout is **בדקו התאמה לדלת שלכם**. WhatsApp
 
 ---
 
-## 4. Design tokens
+## 4. Design tokens: final theme "Limestone" (day) / "Charcoal" (night)
 
-Both prototypes share these tokens. Only the type families differ.
+**Decided:** the page follows the visitor's system light/dark setting (`prefers-color-scheme`). Light = **Limestone**, dark = **Charcoal**. No manual toggle: ad visitors stay under a minute, and the system setting already covers phones on "Automatic", which switch at sunset. The brass/amber accent from the draft is retired.
 
 ### Color
-| Token | Value | Use | Contrast on `--ink-950` |
-|---|---|---|---|
-| `--ink-950` | `#0A0C0E` | page base | — |
-| `--ink-900` | `#0F1215` | alternate section | — |
-| `--ink-850` | `#14181C` | surface / inputs | — |
-| `--ink-800` | `#1B2025` | raised surface | — |
-| `--line` | `#252B31` | hairlines | decorative |
-| `--line-strong` | `#353D46` | decorative dividers on surfaces | decorative |
-| `--line-ui` | `#636C76` | input + ghost-button borders (WCAG 1.4.11) | ≥3:1 on ink-950 and ink-850 |
-| `--text` | `#F3EFE7` | headings, body | 17.1:1 |
-| `--text-2` | `#C5C9CD` | secondary body | 11.8:1 |
-| `--text-3` | `#959CA4` | captions, meta | 7.1:1 |
-| `--brass` | `#E6AE4E` | single accent, primary CTA | 9.8:1 |
-| `--brass-hi` | `#F3CC85` | hover, placeholder brackets | 12.9:1 |
-| `--on-brass` | `#120E06` | text on brass | 9.6:1 on brass |
-| `--shabbat-950` | `#14110B` | warm ground for the Shabbat section only | — |
+Contrast is measured against the alternate section background (`--bg-2`), the stricter of the two grounds.
 
-There's one accent. The blue in the photograph is never sampled into UI, so the brand stays brass.
+| Token | Limestone (light) | Charcoal (dark) | Use | Contrast light / dark |
+|---|---|---|---|---|
+| `--bg` | `#F1EDE6` | `#0E0F11` | page base | — |
+| `--bg-2` | `#E8E3DA` | `#15171A` | alternate section | — |
+| `--surface` | `#FBF9F5` | `#1A1C20` | inputs, raised panels | — |
+| `--line` | `#D9D2C6` | `#272A2F` | hairlines | decorative |
+| `--line-ui` | `#8A8478` | `#666B73` | input + secondary-button borders (WCAG 1.4.11) | 3.2:1 / 3.6:1 on `--bg` |
+| `--text` | `#16181A` | `#F5F5F3` | headings, body | ≥15:1 |
+| `--text-2` | `#3E4246` | `#C3C5C8` | secondary body | ≥9:1 |
+| `--text-3` | `#5F6368` | `#999CA1` | captions, meta | 4.7:1 / 6.5:1 |
+| `--accent` | `#1F4D3A` bottle green | `#8CC5A6` sage | single accent, primary CTA | 7.5:1 / 8.9:1 |
+| `--accent-hi` | `#2C6A50` | `#B4DBC5` | hover, scan line | — |
+| `--on-accent` | `#F6F3EC` | `#0C1A13` | text on the CTA | 8.7:1 / 9.1:1 |
 
-### Type (≤3 families)
+One accent, green in both modes, so day and night read as the same brand. Blue was tested for night and rejected: it blends into the photo's blue light and is the category default.
 
-| Role | Direction A | Direction B |
+### Type (2 families)
+
+| Role | Font | Why |
 |---|---|---|
-| Hebrew display | **Frank Ruhl Libre** 800/900. A Hebrew serif with real stroke contrast; reads "architecture/editorial". | **Rubik** 900, tight tracking. Bold and geometric; reads "engineered hardware". |
-| Hebrew body | **Heebo** 400/500/600 | **Rubik** 400/500 |
-| Latin wordmark + numerals | **Syne** 700/800 | **Syne** 700/800 |
+| Hebrew display + Latin wordmark | **Bellefair** 400 | A thin, high-contrast Hebrew/Latin serif. Reads as gallery and architecture, not gadget. One family covers both the Hebrew headlines and `ENKËY`. |
+| Hebrew body | **IBM Plex Sans Hebrew** 400/500/600 | Clean, engineered, very legible at small sizes. Its technical tone balances the elegant display face. |
 
 Fonts are self-hosted (subset to Hebrew + Basic Latin, `woff2`, `font-display: swap`, display face preloaded) for LCP.
 
 **Scale** (fluid, 390 to 1440):
-`--fs-display: clamp(3.5rem, 3rem + 4.6vw, 7.75rem)` · `--fs-h2: clamp(2.25rem, 1.7rem + 2.4vw, 3.75rem)` · `--fs-h3: 1.375rem` · `--fs-lead: clamp(1.125rem, 1rem + .4vw, 1.3125rem)` · `--fs-body: 1.0625rem` · `--fs-small: .9375rem` · `--fs-micro: .8125rem`.
-Line heights: display `.92`, h2 `1.08`, body `1.6`. Headlines use `text-wrap: balance`, and `&nbsp;` is placed before the last word where needed so no single word is orphaned.
+`--fs-display: clamp(3.625rem, 3rem + 4.8vw, 8rem)` · `--fs-h2: clamp(2.25rem, 1.7rem + 2.4vw, 3.75rem)` · `--fs-h3: 1.375rem` · `--fs-lead: clamp(1.125rem, 1rem + .4vw, 1.3125rem)` · `--fs-body: 1.0625rem` · `--fs-small: .9375rem` · `--fs-micro: .8125rem`.
+Line heights: display `.98`, h2 `1.05`, body `1.6`. Headlines use `text-wrap: balance`, and `&nbsp;` is placed before the last word where needed so no single word is orphaned.
 
 ### Spacing (4-based, no ad-hoc values)
 `--s-1 4` · `--s-2 8` · `--s-3 12` · `--s-4 16` · `--s-5 24` · `--s-6 32` · `--s-7 48` · `--s-8 64` · `--s-9 96` · `--s-10 128`.
 Section padding: `--s-9` desktop, `--s-8` mobile. Gutter: `clamp(16px, 4vw, 48px)`. Content max-width: `1360px`, prose `34em`.
 
 ### Radius
-`--r-xs 4px` (tags, ticks) · `--r-sm 8px` (panels, images) · `--r-md 14px` (inputs, FAQ rows) · `--r-pill 999px` (buttons only).
-The draft used 20 to 28px everywhere. Tighter radii read as architectural; pills are reserved for actions, so actions are instantly recognizable.
+`--r-xs 2px` (labels) · `--r-sm 4px` (buttons, panels, images) · `--r-md 8px` (inputs, FAQ rows).
+Near-square corners throughout. The draft used 20 to 28px pills and cards everywhere; squared edges read as architectural and match the serif.
 
 ### Elevation
-None. Depth comes from surface steps (`ink-950 → 900 → 850`) and hairlines, not shadows. The single exception is the brass glow on the scan line.
+None. Depth comes from the surface steps (`--bg → --bg-2 → --surface`) and hairlines, not shadows. The single exception is the soft glow on the scan line.
 
 ---
 
@@ -119,34 +117,30 @@ None. Depth comes from surface steps (`ink-950 → 900 → 850`) and hairlines, 
 
 | Element | Motion | Duration / easing | Reduced motion |
 |---|---|---|---|
-| Hero face scan | A brass line sweeps the face mesh top to bottom, fading at the ends | 3.2 s loop, `cubic-bezier(.45,0,.25,1)`, `transform` only | static line at 70% opacity |
+| Hero face scan | A thin accent line sweeps the face mesh top to bottom, fading at the ends | 3.2 s loop, `cubic-bezier(.45,0,.25,1)`, `transform` only | static line at 70% opacity |
 | Hero text | A 12px rise + fade, staggered 60 ms (eyebrow, H1, lead, CTAs). Runs once, CSS-only. | 600 ms `ease-out` | none, instantly visible |
 | Section reveal | IntersectionObserver adds `.is-in`: 16px rise + fade, once | 500 ms | none, content is visible by default (no-JS safe) |
-| Unlock showcase | Zone highlight cross-fades on the schematic; a brass "bolt" retracts 6px on select | 280 ms | instant swap |
+| Unlock showcase | Zone highlight cross-fades on the schematic; an accent "bolt" retracts 6px on select | 280 ms | instant swap |
 | Sticky header | Slides in from the top after the hero leaves | 220 ms | appears without transition |
-| Buttons | brass, then brass-hi on hover; a 2px brass focus ring with 3px offset | 150 ms | n/a |
+| Buttons | accent, then accent-hi on hover; a 2px accent focus ring with 3px offset | 150 ms | n/a |
+| Light/dark | Follows the system setting; no animated switch | — | — |
 
 Nothing animates layout properties, and there's no parallax or autoplay video. Everything is CSS, plus ~1 KB of IntersectionObserver.
 
 ---
 
-## 6. The two hero directions
+## 6. Hero: how the direction was chosen
 
-### A: "Nightfall Editorial" (Frank Ruhl Libre + Heebo)
-- The full-bleed photo is the stage. Text sits directly on the photo's dark right half (the RTL start side). No box, just a gradient that deepens the existing darkness.
-- A large serif H1, with "יש אותך." in brass.
-- A brass scan line sweeps the face mesh, which ties the brand color into the product moment.
-- Mobile: a 380px crop centered on the lock and face, so the lock is ~300px tall. The headline overlaps the fade, and the primary CTA sits above the fold at 390×844.
-- **Strength:** the most emotional and premium, with the strongest "quiet luxury" read. The product is huge on mobile.
-- **Risk:** the serif is less "tech". It needs the showcase section to carry the "engineered" message.
+1. **Two layouts were prototyped** (`hero-a.html`, `hero-b.html`, brass theme). A put text over a full-bleed photo; B used a split layout with a framed photo and labelled callouts.
+2. **Decision:** A's mobile-first priorities with B's labelled callouts.
+3. **Theme round** (`theme-v.html`): three color/font systems on that layout. Midnight Ice (`?v=1`), **Limestone (`?v=2`, chosen)**, Graphite Signal (`?v=3`).
+4. **Night mode round:** a warm-charcoal night version was replaced by Graphite Signal's neutral charcoal, keeping Limestone's fonts and a green accent.
 
-### B: "Anatomy" (Rubik 900 + Syne)
-- An asymmetric split: a massive Rubik headline on the right; on the left, a framed, cropped photo with brass corner ticks and **annotated callouts** (3D face, code, fingerprint).
-- The photo becomes a spec drawing, so the "six ways in" story starts in the hero.
-- **Strength:** explains the product at a glance and feels engineered.
-- **Risk:** on mobile the product image falls below the fold, because the CTA has to come first. The callouts are small at 390px.
-
-**My recommendation: A**, borrowing B's annotation language for section 3 (the showcase schematic). A wins the 5-second test on mobile, where most paid social traffic lands: the visitor sees the lock, the face scan, the promise and the CTA on one screen.
+**Final hero (Limestone):**
+- Desktop: a split layout. The text is on the stone background (right, the RTL start side); a framed, cropped photo panel is on the left, with labelled callouts on the lock (3D face, code, fingerprint) and the accent scan line over the face.
+- Mobile: the photo panel comes first, so the lock is visible immediately, followed by the headline and the primary CTA.
+- **To fix in the build:** at 390×844 the primary CTA currently sits right at the fold. The photo panel will be shortened so the CTA is clearly above it.
+- The photo is unchanged in both modes. It is a dusk scene, so it sits naturally on both stone and charcoal.
 
 ---
 
