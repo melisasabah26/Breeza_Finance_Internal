@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ENKËY | Hero B: Anatomy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink-950:#0A0C0E; --ink-900:#0F1215; --ink-850:#14181C; --ink-800:#1B2025;
+  --line:#252B31; --line-strong:#353D46; --line-ui:#636C76;
+  --text:#F3EFE7; --text-2:#C5C9CD; --text-3:#959CA4;
+  --brass:#E6AE4E; --brass-hi:#F3CC85; --on-brass:#120E06;
+  --f-display:"Rubik", system-ui, sans-serif;
+  --f-body:"Rubik", system-ui, sans-serif;
+  --f-latin:"Syne", "Rubik", sans-serif;
+  --s-1:4px;--s-2:8px;--s-3:12px;--s-4:16px;--s-5:24px;--s-6:32px;--s-7:48px;--s-8:64px;--s-9:96px;
+  --r-sm:8px;--r-md:14px;--r-pill:999px;
+  --gutter:clamp(16px,4vw,48px);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ink-950);color:var(--text);font-family:var(--f-body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wordmark{font-family:var(--f-latin);font-weight:800;font-size:26px;letter-spacing:.08em;text-decoration:none}
+.wordmark span{color:var(--brass)}
+.header{max-width:1360px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:var(--s-5);padding:var(--s-5) var(--gutter)}
+.nav{display:flex;gap:var(--s-6);font-size:15px}
+.nav a{color:var(--text-2);text-decoration:none}
+.phone{display:inline-flex;align-items:center;gap:var(--s-2);min-height:44px;padding:0 var(--s-4);border:1px solid var(--line-ui);border-radius:var(--r-pill);text-decoration:none;font-weight:500;font-size:15px}
+.hero{max-width:1360px;margin:0 auto;padding:var(--s-6) var(--gutter) var(--s-8);display:grid;grid-template-columns:1.05fr .95fr;gap:var(--s-8);align-items:center}
+.eyebrow{font-size:14px;font-weight:500;letter-spacing:.06em;color:var(--brass);margin:0 0 var(--s-5);font-variant-numeric:tabular-nums}
+.eyebrow{display:flex;gap:var(--s-3);align-items:baseline}.eyebrow b{font-family:var(--f-latin);font-weight:700;color:var(--text-3)}
+h1{font-family:var(--f-display);font-weight:900;font-size:clamp(56px,2.5rem + 5vw,132px);line-height:.9;letter-spacing:-.035em;margin:0}
+h1 .l2{color:var(--brass);display:block}
+.lead{font-size:clamp(18px,1rem + .4vw,21px);color:var(--text-2);max-width:28em;margin:var(--s-6) 0}
+.ctas{display:flex;flex-wrap:wrap;gap:var(--s-3)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--s-2);min-height:56px;padding:0 var(--s-6);border-radius:var(--r-pill);font-weight:600;font-size:17px;text-decoration:none}
+.btn--primary{background:var(--brass);color:var(--on-brass)}
+.btn--primary svg{transform:scaleX(-1)}
+.btn--ghost{border:1px solid var(--line-ui);color:var(--text)}
+.spec{list-style:none;margin:var(--s-7) 0 0;padding:0;display:grid;grid-template-columns:repeat(3,auto);justify-content:start;border-top:1px solid var(--line)}
+.spec li{padding:var(--s-4) 0 0;padding-inline-end:var(--s-6);font-size:15px;color:var(--text-2);line-height:1.4}
+.spec li+li{padding-inline-start:var(--s-6);border-inline-start:1px solid var(--line)}
+.spec strong{display:block;color:var(--text);font-weight:500}
+.ph{color:var(--brass-hi)}
+/* Anatomy panel: image cropped to source x 80..840 of 1264x848, so callouts are in panel % */
+.panel{position:relative;aspect-ratio:760/848;border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden;background:var(--ink-900)}
+.panel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:15.9% 50%}
+.panel::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(10,12,14,.55),transparent 35%);pointer-events:none}
+.tick{position:absolute;width:18px;height:18px;border-color:var(--brass);border-style:solid;opacity:.8;z-index:2}
+.tick--tl{top:12px;left:12px;border-width:1px 0 0 1px}.tick--tr{top:12px;right:12px;border-width:1px 1px 0 0}
+.tick--bl{bottom:12px;left:12px;border-width:0 0 1px 1px}.tick--br{bottom:12px;right:12px;border-width:0 1px 1px 0}
+.callout{position:absolute;z-index:2;display:flex;align-items:center;direction:ltr;transform:translate(-100%,-50%)}
+.callout__label{font-size:13px;font-weight:500;color:var(--text);background:rgba(10,12,14,.82);border:1px solid var(--line-strong);padding:4px 10px;border-radius:var(--r-pill);white-space:nowrap;direction:rtl}
+.callout__line{width:var(--len,48px);height:1px;background:var(--brass)}
+.callout__dot{width:9px;height:9px;border-radius:50%;background:var(--brass);box-shadow:0 0 0 4px rgba(230,174,78,.22);flex:none}
+.scan{position:absolute;left:52.6%;top:18.9%;width:10.6%;height:15.3%;overflow:hidden;z-index:1}
+.scan::before{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,transparent 47%,var(--brass-hi) 50%,transparent 53%);filter:drop-shadow(0 0 6px rgba(230,174,78,.8));animation:scan 3.2s cubic-bezier(.45,0,.25,1) infinite}
+@keyframes scan{0%{transform:translateY(-50%);opacity:0}15%,85%{opacity:1}100%{transform:translateY(50%);opacity:0}}
+.caption{position:absolute;z-index:2;bottom:var(--s-5);right:var(--s-5);left:var(--s-5);font-size:13px;color:var(--text-2);display:flex;justify-content:space-between}
+.caption span:last-child{font-family:var(--f-latin);letter-spacing:.12em;color:var(--text-3)}
+@media (prefers-reduced-motion:reduce){.scan::before{animation:none;opacity:.7}}
+@media (max-width:1023px){.hero{grid-template-columns:1fr 1fr;gap:var(--s-6)}}
+@media (max-width:767px){
+  .nav{display:none}
+  .header{padding:var(--s-4)}
+  .wordmark{font-size:22px}
+  .hero{grid-template-columns:1fr;padding:var(--s-2) var(--s-4) var(--s-7);gap:var(--s-6)}
+  h1{font-size:60px}
+  .lead{margin:var(--s-4) 0 var(--s-5)}
+  .btn{width:100%}
+  .spec{grid-template-columns:1fr;margin-top:var(--s-5)}
+  .spec li,.spec li+li{padding:var(--s-3) 0;border-inline-start:0;border-bottom:1px solid var(--line)}
+  .callout__label{font-size:12px;padding:3px 8px}
+  .callout{--len:16px !important}
+}
+</style>
+</head>
+<body>
+<header class="header">
+  <a class="wordmark" href="#" dir="ltr" aria-label="ENKËY">ENK<span>Ë</span>Y</a>
+  <nav class="nav" aria-label="ניווט ראשי"><a href="#">איך פותחים</a><a href="#">שבת</a><a href="#">אבטחה</a><a href="#">מחיר</a><a href="#">שאלות</a></nav>
+  <a class="phone" href="tel:+972527703730"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg><span dir="ltr">052-7703730</span></a>
+</header>
+<main class="hero">
+  <div>
+    <p class="eyebrow"><b dir="ltr">ENKËY</b>מנעול חכם עם זיהוי פנים</p>
+    <h1>אין מפתח.<span class="l2">יש אותך.</span></h1>
+    <p class="lead">מבט אחד והדלת נפתחת. פנים, אצבע, קוד או נייד, ומפתח מכני לשבת שמגיע עם כל מנעול. אנחנו מגיעים, מתקינים ומסבירים.</p>
+    <div class="ctas">
+      <a class="btn btn--primary" href="#">בדקו התאמה לדלת שלכם <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn btn--ghost" href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20.5 11.5a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.7z"/></svg>וואטסאפ</a>
+    </div>
+    <ul class="spec">
+      <li><strong>התקנה מקצועית</strong>כולל הדרכה בבית</li>
+      <li><strong>מפתח מכני</strong>לשבת ולכל מצב</li>
+      <li><strong>אחריות</strong><span class="ph">[X]</span> חודשים</li>
+    </ul>
+  </div>
+  <figure class="panel" style="margin:0">
+    <img src="enkey-hero.jpg" alt="מנעול ENKËY שחור על משקוף דלת, עם סורק פנים, מקלדת וחיישן טביעת אצבע" width="1264" height="848">
+    <span class="tick tick--tl"></span><span class="tick tick--tr"></span><span class="tick tick--bl"></span><span class="tick tick--br"></span>
+    <div class="scan" aria-hidden="true"></div>
+    <div class="callout" style="left:28.7%;top:17.7%;--len:40px" aria-hidden="true"><span class="callout__label">זיהוי פנים 3D</span><span class="callout__line"></span><span class="callout__dot"></span></div>
+    <div class="callout" style="left:28.9%;top:37.7%;--len:40px" aria-hidden="true"><span class="callout__label">קוד אישי</span><span class="callout__line"></span><span class="callout__dot"></span></div>
+    <div class="callout" style="left:31.2%;top:59.9%;--len:52px" aria-hidden="true"><span class="callout__label">טביעת אצבע</span><span class="callout__line"></span><span class="callout__dot"></span></div>
+    <figcaption class="caption"><span>שש דרכים לפתוח. מנעול אחד.</span><span dir="ltr">ENKËY / 01</span></figcaption>
+  </figure>
+</main>
+</body>
+</html>

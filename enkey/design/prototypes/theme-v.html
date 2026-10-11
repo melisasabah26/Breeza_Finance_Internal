@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ENKËY | Theme variants</title>
+<script>var q=new URLSearchParams(location.search);document.documentElement.dataset.v=q.get('v')||'2';if(q.get('accent'))document.documentElement.dataset.accent=q.get('accent')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Secular+One&family=Assistant:wght@400;500;600;700&family=Bellefair&family=IBM+Plex+Sans+Hebrew:wght@400;500;600&family=Karantina:wght@400;700&family=Heebo:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* V1 Midnight Ice: deep blue-ink, ice-teal accent that echoes the photo's own light */
+:root[data-v="1"]{
+  --bg:#0A1216;--bg-2:#0F1A1F;--surface:#13222A;--line:#1E3039;--line-ui:#5E7682;
+  --text:#EAF2F3;--text-2:#B9C8CC;--text-3:#8FA3A9;
+  --accent:#7FD8D2;--accent-hi:#B3EBE6;--on-accent:#061416;
+  --f-display:"Secular One",sans-serif;--f-body:"Assistant",sans-serif;--f-latin:"Secular One",sans-serif;
+  --display-weight:400;--display-lh:1;--display-track:-.01em;--h1-size:clamp(54px,2.8rem + 4.4vw,116px);
+  --scan:#B3EBE6;--btn-radius:999px;--latin-track:.14em;
+}
+/* V2 Limestone: light warm stone, ink type, bottle-green accent. Gallery / architecture. */
+:root[data-v="2"]{
+  --bg:#F1EDE6;--bg-2:#E8E3DA;--surface:#FBF9F5;--line:#D9D2C6;--line-ui:#8A8478;
+  --text:#16181A;--text-2:#3E4246;--text-3:#5F6368;
+  --accent:#1F4D3A;--accent-hi:#2C6A50;--on-accent:#F6F3EC;
+  --f-display:"Bellefair",serif;--f-body:"IBM Plex Sans Hebrew",sans-serif;--f-latin:"Bellefair",serif;
+  --display-weight:400;--display-lh:.98;--display-track:0;--h1-size:clamp(58px,3rem + 4.8vw,128px);
+  --scan:#E9F5EE;--btn-radius:4px;--latin-track:.22em;
+}
+/* V2 at night: neutral charcoal ground (from V3), Limestone fonts, follows system dark mode */
+@media (prefers-color-scheme:dark){
+:root[data-v="2"]{
+  --bg:#0E0F11;--bg-2:#15171A;--surface:#1A1C20;--line:#272A2F;--line-ui:#666B73;
+  --text:#F5F5F3;--text-2:#C3C5C8;--text-3:#999CA1;
+  --accent:#8CC5A6;--accent-hi:#B4DBC5;--on-accent:#0C1A13;--scan:#B4DBC5;
+}
+:root[data-v="2"][data-accent="blue"]{--accent:#6E95FF;--accent-hi:#A3BBFF;--on-accent:#070B16;--scan:#A3BBFF}
+}
+/* V3 Graphite Signal: neutral graphite, crisp white, signal-blue accent, condensed poster type */
+:root[data-v="3"]{
+  --bg:#0E0F11;--bg-2:#15171A;--surface:#1A1C20;--line:#272A2F;--line-ui:#666B73;
+  --text:#F5F5F3;--text-2:#C3C5C8;--text-3:#999CA1;
+  --accent:#6E95FF;--accent-hi:#A3BBFF;--on-accent:#070B16;
+  --f-display:"Karantina",sans-serif;--f-body:"Heebo",sans-serif;--f-latin:"Heebo",sans-serif;
+  --display-weight:700;--display-lh:.82;--display-track:0;--h1-size:clamp(84px,4rem + 7.5vw,200px);
+  --scan:#A3BBFF;--btn-radius:999px;--latin-track:.2em;
+}
+:root{--s-2:8px;--s-3:12px;--s-4:16px;--s-5:24px;--s-6:32px;--s-7:48px;--s-8:64px;--s-9:96px;--gutter:clamp(16px,4vw,48px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--f-body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wordmark{font-family:var(--f-latin);font-weight:700;font-size:24px;letter-spacing:var(--latin-track);text-decoration:none}
+.wordmark span{color:var(--accent)}
+.header{position:absolute;inset:0 0 auto;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:var(--s-5);padding:var(--s-5) var(--gutter)}
+.nav{display:flex;gap:var(--s-6);font-size:15px}
+.nav a{color:var(--text-2);text-decoration:none}
+.phone{display:inline-flex;align-items:center;gap:var(--s-2);min-height:44px;padding:0 var(--s-4);border:1px solid var(--line-ui);border-radius:var(--btn-radius);text-decoration:none;font-weight:500;font-size:15px}
+h1{font-family:var(--f-display);font-weight:var(--display-weight);font-size:var(--h1-size);line-height:var(--display-lh);letter-spacing:var(--display-track);margin:0}
+h1 em{font-style:normal;color:var(--accent);display:block}
+.eyebrow{font-size:14px;font-weight:500;letter-spacing:.04em;color:var(--accent);margin:0 0 var(--s-5);display:flex;align-items:center;gap:var(--s-3)}
+.eyebrow::before{content:"";width:32px;height:1px;background:currentColor}
+.lead{font-size:clamp(18px,1rem + .4vw,21px);color:var(--text-2);max-width:30em;margin:var(--s-5) 0 var(--s-6)}
+.ctas{display:flex;flex-wrap:wrap;gap:var(--s-3)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--s-2);min-height:56px;padding:0 var(--s-6);border-radius:var(--btn-radius);font-weight:600;font-size:17px;text-decoration:none}
+.btn--primary{background:var(--accent);color:var(--on-accent)}
+.btn--primary svg{transform:scaleX(-1)}
+.btn--ghost{border:1px solid var(--line-ui);color:var(--text)}
+.rail{list-style:none;margin:var(--s-7) 0 0;padding:var(--s-5) 0 0;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:var(--s-3) var(--s-6);font-size:15px;color:var(--text-2)}
+.rail li{display:flex;align-items:center;gap:var(--s-2)}
+.rail svg{color:var(--accent);flex:none}
+.ph{color:var(--accent)}
+.scan{position:absolute;overflow:hidden;pointer-events:none}
+.scan::before{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,transparent 47%,var(--scan) 50%,transparent 53%);filter:drop-shadow(0 0 6px var(--scan));animation:scan 3.2s cubic-bezier(.45,0,.25,1) infinite}
+@keyframes scan{0%{transform:translateY(-50%);opacity:0}15%,85%{opacity:1}100%{transform:translateY(50%);opacity:0}}
+@media (prefers-reduced-motion:reduce){.scan::before{animation:none;opacity:.7}}
+
+/* ---- Dark variants (1, 3): full-bleed photo, text on its dark side ---- */
+.hero{position:relative;min-height:min(100svh,900px);display:grid;align-items:end;overflow:hidden;isolation:isolate}
+.hero__media{position:absolute;inset:0;z-index:-1}
+.hero__media img{width:100%;height:100%;object-fit:cover;object-position:0% 50%;display:block}
+.hero__media::after{content:"";position:absolute;inset:0;background:linear-gradient(to left,var(--bg) 0%,color-mix(in srgb,var(--bg) 75%,transparent) 30%,transparent 58%),linear-gradient(to top,var(--bg) 0%,transparent 30%)}
+.hero .scan{left:38%;top:16.5%;width:6.3%;height:16.5%}
+.hero__inner{width:100%;max-width:1360px;margin:0 auto;padding:140px var(--gutter) var(--s-8);display:grid;grid-template-columns:minmax(0,580px) 1fr}
+
+/* ---- Light variant (2): stone page, photo as a framed architectural panel ---- */
+:root[data-v="2"] .header{position:relative}
+:root[data-v="2"] .hero{display:grid;grid-template-columns:1fr 1.05fr;gap:var(--s-8);align-items:center;max-width:1360px;margin:0 auto;padding:var(--s-5) var(--gutter) var(--s-8);min-height:0}
+:root[data-v="2"] .hero__media{position:relative;inset:auto;z-index:0;aspect-ratio:760/848;border-radius:4px;overflow:hidden;order:2}
+:root[data-v="2"] .hero__media img{position:absolute;inset:0;object-position:15.9% 50%}
+:root[data-v="2"] .hero__media::after{display:none}
+:root[data-v="2"] .hero .scan{left:52.6%;top:18.9%;width:10.6%;height:15.3%}
+:root[data-v="2"] .hero__inner{padding:0;display:block;max-width:600px}
+:root[data-v="2"] .eyebrow{color:var(--accent)}
+
+/* callouts (shown in V2 panel; in the real build they live in the "how it opens" section) */
+.callout{position:absolute;z-index:2;display:none;align-items:center;direction:ltr;transform:translate(-100%,-50%)}
+:root[data-v="2"] .callout{display:flex}
+.callout__label{font-size:13px;font-weight:500;color:#16181A;background:rgba(251,249,245,.92);padding:4px 10px;border-radius:2px;white-space:nowrap;direction:rtl}
+.callout__line{width:var(--len,40px);height:1px;background:#FBF9F5}
+.callout__dot{width:9px;height:9px;border-radius:50%;background:#FBF9F5;box-shadow:0 0 0 4px rgba(251,249,245,.25);flex:none}
+
+/* next section, to show the page palette below the fold */
+.next{background:var(--bg-2);border-top:1px solid var(--line)}
+.next__inner{max-width:1360px;margin:0 auto;padding:var(--s-9) var(--gutter);display:grid;grid-template-columns:1fr 1fr;gap:var(--s-8)}
+.next h2{font-family:var(--f-display);font-weight:var(--display-weight);font-size:clamp(36px,1.7rem + 2.4vw,60px);line-height:1.05;margin:0 0 var(--s-4)}
+.next p{color:var(--text-2);margin:0;font-size:19px}
+.pains{list-style:none;margin:0;padding:0}
+.pains li{display:flex;gap:var(--s-4);align-items:baseline;padding:var(--s-5) 0;border-bottom:1px solid var(--line);font-size:20px}
+.pains li span{font-family:var(--f-latin);color:var(--accent);font-size:15px;letter-spacing:.1em}
+
+@media (max-width:767px){
+  .nav{display:none}
+  .header{position:relative;padding:var(--s-4)}
+  .wordmark{font-size:21px}
+  .hero{min-height:0;display:block}
+  .hero__media{position:relative;height:380px}
+  .hero__media img{object-position:25% 50%}
+  .hero__media::after{background:linear-gradient(to top,var(--bg) 0%,transparent 40%)}
+  .hero .scan{left:46%;top:19%;width:10%;height:15%}
+  .hero__inner{display:block;padding:0 var(--s-4) var(--s-7);margin-top:-36px;position:relative}
+  :root[data-v="1"] h1{font-size:56px}
+  :root[data-v="3"] h1{font-size:96px}
+  .lead{margin:var(--s-4) 0 var(--s-5)}
+  .btn{width:100%}
+  :root[data-v="2"] .hero{display:flex;flex-direction:column;gap:var(--s-6);padding:0 var(--s-4) var(--s-7)}
+  :root[data-v="2"] .hero__media{order:0;height:auto;width:100%}
+  :root[data-v="2"] .hero__inner{margin:0}
+  :root[data-v="2"] h1{font-size:64px}
+  .callout__label{font-size:12px;padding:3px 7px}.callout{--len:14px !important}
+  .next__inner{grid-template-columns:1fr;gap:var(--s-6);padding:var(--s-8) var(--s-4)}
+}
+</style>
+</head>
+<body>
+<header class="header">
+  <a class="wordmark" href="#" dir="ltr" aria-label="ENKËY">ENK<span>Ë</span>Y</a>
+  <nav class="nav" aria-label="ניווט ראשי"><a href="#">איך פותחים</a><a href="#">שבת</a><a href="#">אבטחה</a><a href="#">מחיר</a><a href="#">שאלות</a></nav>
+  <a class="phone" href="tel:+972527703730"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg><span dir="ltr">052-7703730</span></a>
+</header>
+<section class="hero" aria-labelledby="h">
+  <div class="hero__media">
+    <img src="enkey-hero.jpg" alt="מנעול ENKËY שחור על משקוף דלת, סורק פנים בכניסה לבית מודרני בשעת דמדומים" width="1264" height="848">
+    <div class="scan" aria-hidden="true"></div>
+    <div class="callout" style="left:28.7%;top:17.7%;--len:36px" aria-hidden="true"><span class="callout__label">זיהוי פנים 3D</span><span class="callout__line"></span><span class="callout__dot"></span></div>
+    <div class="callout" style="left:28.9%;top:37.7%;--len:36px" aria-hidden="true"><span class="callout__label">קוד אישי</span><span class="callout__line"></span><span class="callout__dot"></span></div>
+    <div class="callout" style="left:31.2%;top:59.9%;--len:48px" aria-hidden="true"><span class="callout__label">טביעת אצבע</span><span class="callout__line"></span><span class="callout__dot"></span></div>
+  </div>
+  <div class="hero__inner">
+    <div>
+      <p class="eyebrow">מנעול חכם עם זיהוי פנים · התקנה עד הבית</p>
+      <h1 id="h">אין מפתח.<em>יש אותך.</em></h1>
+      <p class="lead">מבט אחד והדלת נפתחת. <span dir="ltr">ENKËY</span> מזהה אתכם בפנים, באצבע, בקוד או מהנייד. ולשבת? מפתח מכני, כלול בכל מנעול.</p>
+      <div class="ctas">
+        <a class="btn btn--primary" href="#">בדקו התאמה לדלת שלכם <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn--ghost" href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20.5 11.5a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.7z"/></svg>וואטסאפ</a>
+      </div>
+      <ul class="rail">
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>התקנה מקצועית והדרכה</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>מפתח מכני לשבת</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>אחריות <span class="ph">[X]</span> חודשים</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<section class="next" aria-labelledby="n">
+  <div class="next__inner">
+    <div><h2 id="n">לביטחון שלך מגיע שקט.</h2><p>בעבודה, בחו״ל, בקניות או בשיחה במרפסת: טוב לדעת שהכניסה לבית בידיים שלכם.</p></div>
+    <ul class="pains">
+      <li><span dir="ltr">01</span>בלי מפתח מתחת לשטיח.</li>
+      <li><span dir="ltr">02</span>בלי לדאוג שהילד יאבד את המפתח בחוג.</li>
+      <li><span dir="ltr">03</span>בלי לחכות במדרגות למישהו שיפתח.</li>
+    </ul>
+  </div>
+</section>
+</body>
+</html>
