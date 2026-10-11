@@ -43,7 +43,7 @@ img{max-width:100%;height:auto;display:block}
 .wm{font-family:var(--f-display);font-size:1.75rem;letter-spacing:.24em}
 .wm span{color:var(--accent)}
 .meta{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:.875rem;color:var(--fg-3)}
-.pill{display:inline-flex;align-items:center;gap:8px;color:var(--accent);font-weight:500}
+.pill{white-space:nowrap;display:inline-flex;align-items:center;gap:8px;color:var(--accent);font-weight:500}
 .pill::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
 
 .intro{padding-block:clamp(40px,7vw,88px) clamp(32px,5vw,56px)}
@@ -66,10 +66,11 @@ section{padding-block:clamp(48px,7vw,96px) 0}
 .sec-head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:16px;margin-bottom:28px}
 .sec-head h2{font-size:clamp(2rem,1.4rem + 2vw,3rem)}
 .sec-head p{margin:8px 0 0;color:var(--fg-2);max-width:60ch}
+.sec-head>div{min-width:0}
 
 /* Day/night viewer */
-.seg{display:inline-flex;border:1px solid var(--fg-3);border-radius:4px;padding:3px;gap:3px}
-.seg button{font:inherit;font-size:.9375rem;font-weight:500;min-height:40px;padding:0 18px;border:0;border-radius:2px;background:transparent;color:var(--fg-2);cursor:pointer}
+.seg{display:inline-flex;flex:none;border:1px solid var(--fg-3);border-radius:4px;padding:3px;gap:3px}
+.seg button{white-space:nowrap;font:inherit;font-size:.9375rem;font-weight:500;min-height:40px;padding:0 18px;border:0;border-radius:2px;background:transparent;color:var(--fg-2);cursor:pointer}
 .seg button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)}
 .viewer{display:grid;grid-template-columns:minmax(0,2.6fr) minmax(0,1fr);gap:20px;align-items:start}
 .shot{margin:0;display:flex;flex-direction:column;gap:10px;min-width:0}
@@ -116,6 +117,10 @@ section{padding-block:clamp(48px,7vw,96px) 0}
 @media (max-width:760px){
   .viewer{grid-template-columns:minmax(0,1fr)}
   .viewer .phone{max-width:300px}
+  .sec-head{margin-bottom:20px}
+  .sec-head .seg{display:grid;grid-template-columns:1fr 1fr;width:100%}
+  .foot{margin-top:48px}
+  .foot .wrap{padding-block:12px 14px;gap:2px 12px;font-size:.75rem;line-height:1.5}
 }
 @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 </style>
@@ -275,7 +280,7 @@ section{padding-block:clamp(48px,7vw,96px) 0}
 <td>Tokens in CSS, real <code>/privacy</code> and <code>/accessibility</code> pages, responsive AVIF/WebP hero with preload.</td>
 </tr>
 </tbody></table></div>
-<p><strong>Shabbat blind spot (important, not just design):</strong> The draft says the key works &quot;בלי חשמל&quot;. That is true of the mechanical cylinder. However, many smart locks still <strong>wake a sensor, beep, light up or log an event</strong> when the handle is turned or the door opens. For an observant household, that&#39;s the actual question. The page must not claim &quot;Shabbat-compliant&quot;. It says what&#39;s factually true (a mechanical key is included) and leaves a visible placeholder: <code>[לאשר מול היצרן: האם פתיחה בידית/במפתח מפעילה רכיב חשמלי כלשהו (חיישן, צפצוף, תאורה, תיעוד), והאם יש מצב שבת]</code>. If the lock has a certified Shabbat mode, that becomes the headline of the section and a major ad angle.</p>
+<p><strong>Shabbat blind spot (important, not just design):</strong> The draft says the key works &quot;<bdi dir="rtl" lang="he">בלי חשמל</bdi>&quot;. That is true of the mechanical cylinder. However, many smart locks still <strong>wake a sensor, beep, light up or log an event</strong> when the handle is turned or the door opens. For an observant household, that&#39;s the actual question. The page must not claim &quot;Shabbat-compliant&quot;. It says what&#39;s factually true (a mechanical key is included) and leaves a visible placeholder: <code>[לאשר מול היצרן: האם פתיחה בידית/במפתח מפעילה רכיב חשמלי כלשהו (חיישן, צפצוף, תאורה, תיעוד), והאם יש מצב שבת]</code>. If the lock has a certified Shabbat mode, that becomes the headline of the section and a major ad angle.</p>
 
 <h2 id="plan-2">2. Message hierarchy</h2>
 <ol>
@@ -285,7 +290,7 @@ section{padding-block:clamp(48px,7vw,96px) 0}
 <li><strong>Is it for me:</strong> families, Shabbat homes, hosts, elderly parents. (segments)</li>
 <li><strong>What it costs and what happens next:</strong> the price anchor, then the 3-step process, then the fit-check form.</li>
 </ol>
-<p>The one action throughout is <strong>בדקו התאמה לדלת שלכם</strong>. WhatsApp is the low-commitment alternative. Calling is third.</p>
+<p>The one action throughout is <strong><bdi dir="rtl" lang="he">בדקו התאמה לדלת שלכם</bdi></strong>. WhatsApp is the low-commitment alternative. Calling is third.</p>
 
 <h2 id="plan-3">3. Final section list</h2>
 <div class="scroll"><table>
@@ -311,7 +316,7 @@ section{padding-block:clamp(48px,7vw,96px) 0}
 </tr>
 <tr>
 <td>2</td>
-<td><strong>The feeling</strong>: &quot;לביטחון שלך מגיע שקט.&quot;</td>
+<td><strong>The feeling</strong>: &quot;<bdi dir="rtl" lang="he">לביטחון שלך מגיע שקט.</bdi>&quot;</td>
 <td>Emotional pains (key under the mat, the kid&#39;s lost key, waiting on the stairs) on the start side; video-at-the-door and entry history as two &quot;relief&quot; rows on the end side. Asymmetric split, not 5 cards.</td>
 <td>none</td>
 </tr>
@@ -330,7 +335,7 @@ section{padding-block:clamp(48px,7vw,96px) 0}
 <tr>
 <td>5</td>
 <td><strong>Shabbat</strong></td>
-<td>&quot;חכם באמצע השבוע. פשוט בשבת.&quot; A calm two-column &quot;weekday / Shabbat&quot; diptych: the weekday side shows every method, the Shabbat side shows only the key. Warm, restrained, no candle clip-art.</td>
+<td>&quot;<bdi dir="rtl" lang="he">חכם באמצע השבוע. פשוט בשבת.</bdi>&quot; A calm two-column &quot;weekday / Shabbat&quot; diptych: the weekday side shows every method, the Shabbat side shows only the key. Warm, restrained, no candle clip-art.</td>
 <td>none</td>
 </tr>
 <tr>
@@ -687,9 +692,9 @@ Near-square corners throughout. The draft used 20 to 28px pills and cards everyw
 
 <h2 id="plan-8">8. Legal and commercial blind spots</h2>
 <ul>
-<li><strong>Price display:</strong> Israeli consumer protection rules require consumer-facing prices to include VAT. The anchor copy reads &quot;כולל מע״מ&quot; deliberately.</li>
+<li><strong>Price display:</strong> Israeli consumer protection rules require consumer-facing prices to include VAT. The anchor copy reads &quot;<bdi dir="rtl" lang="he">כולל מע״מ</bdi>&quot; deliberately.</li>
 <li><strong>Privacy Protection Law, Amendment 13 (in force Aug 2025):</strong> the lead form collects personal data, and the product itself handles biometrics. The privacy policy needs counsel, and possibly a database-registration review. The page never states where biometric data lives until the manufacturer confirms it.</li>
-<li><strong>Accessibility (תקנות שוויון זכויות, IS 5568):</strong> the statement must name a real accessibility coordinator. That&#39;s a placeholder for now.</li>
+<li><strong>Accessibility (<bdi dir="rtl" lang="he">תקנות שוויון זכויות</bdi>, IS 5568):</strong> the statement must name a real accessibility coordinator. That&#39;s a placeholder for now.</li>
 <li><strong>WhatsApp as a channel:</strong> chats bypass the Supabase pipeline, so WhatsApp leads are counted only by the click event. Proposal (not built): log WhatsApp/call clicks with their UTMs to Supabase too, so every channel lands in one table.</li>
 </ul>
 </article>
