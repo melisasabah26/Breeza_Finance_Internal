@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ENKËY | Theme variants</title>
-<script>document.documentElement.dataset.v=new URLSearchParams(location.search).get('v')||'1'</script>
+<script>var q=new URLSearchParams(location.search);document.documentElement.dataset.v=q.get('v')||'1';if(q.get('accent'))document.documentElement.dataset.accent=q.get('accent')</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Secular+One&family=Assistant:wght@400;500;600;700&family=Bellefair&family=IBM+Plex+Sans+Hebrew:wght@400;500;600&family=Karantina:wght@400;700&family=Heebo:wght@400;500;600&display=swap" rel="stylesheet">
@@ -27,13 +27,15 @@
   --display-weight:400;--display-lh:.98;--display-track:0;--h1-size:clamp(58px,3rem + 4.8vw,128px);
   --scan:#E9F5EE;--btn-radius:4px;--latin-track:.22em;
 }
-/* V2 at night: same Limestone family, follows the visitor's system dark mode */
+/* V2 at night: neutral charcoal ground (from V3), Limestone fonts, follows system dark mode */
 @media (prefers-color-scheme:dark){
 :root[data-v="2"]{
-  --bg:#121412;--bg-2:#171A17;--surface:#1D201D;--line:#2A2E2A;--line-ui:#6E746C;
-  --text:#EEEAE2;--text-2:#C4C2BA;--text-3:#9C9A92;
+  --bg:#0E0F11;--bg-2:#15171A;--surface:#1A1C20;--line:#272A2F;--line-ui:#666B73;
+  --text:#F5F5F3;--text-2:#C3C5C8;--text-3:#999CA1;
   --accent:#8CC5A6;--accent-hi:#B4DBC5;--on-accent:#0C1A13;--scan:#B4DBC5;
-}}
+}
+:root[data-v="2"][data-accent="blue"]{--accent:#6E95FF;--accent-hi:#A3BBFF;--on-accent:#070B16;--scan:#A3BBFF}
+}
 /* V3 Graphite Signal: neutral graphite, crisp white, signal-blue accent, condensed poster type */
 :root[data-v="3"]{
   --bg:#0E0F11;--bg-2:#15171A;--surface:#1A1C20;--line:#272A2F;--line-ui:#666B73;
